@@ -8,6 +8,7 @@
     <name>Barcode4J-parent</name>
     <modules>
         <module>barcode4j</module>
+        <module>barcode4j-fop-ext</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -52,6 +53,11 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.11</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>fop</artifactId>
+                <version>1.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
