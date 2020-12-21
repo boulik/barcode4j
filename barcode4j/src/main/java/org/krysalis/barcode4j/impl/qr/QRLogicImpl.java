@@ -18,17 +18,16 @@
 
 package org.krysalis.barcode4j.impl.qr;
 
-import java.awt.Dimension;
-import java.util.Hashtable;
-
-import org.krysalis.barcode4j.TwoDimBarcodeLogicHandler;
-
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.google.zxing.qrcode.encoder.ByteMatrix;
 import com.google.zxing.qrcode.encoder.Encoder;
 import com.google.zxing.qrcode.encoder.QRCode;
+import org.krysalis.barcode4j.TwoDimBarcodeLogicHandler;
+
+import java.awt.*;
+import java.util.Hashtable;
 
 /**
  * Top-level class for the logic part of the DataMatrix implementation.
@@ -58,7 +57,7 @@ public class QRLogicImpl implements QRConstants {
 
         QRCode code = new QRCode();
         try {
-            Encoder.encode(msg, zxingErrLevel, hints, code);
+            code = Encoder.encode(msg, zxingErrLevel, hints);
         } catch (WriterException e) {
             throw new RuntimeException(e.getMessage(), e);
         }

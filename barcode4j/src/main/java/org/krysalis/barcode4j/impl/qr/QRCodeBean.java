@@ -18,8 +18,10 @@
 
 package org.krysalis.barcode4j.impl.qr;
 
-import java.awt.Dimension;
-
+import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.encoder.ByteMatrix;
+import com.google.zxing.qrcode.encoder.Encoder;
+import com.google.zxing.qrcode.encoder.QRCode;
 import org.krysalis.barcode4j.BarcodeDimension;
 import org.krysalis.barcode4j.TwoDimBarcodeLogicHandler;
 import org.krysalis.barcode4j.impl.AbstractBarcodeBean;
@@ -29,10 +31,7 @@ import org.krysalis.barcode4j.output.CanvasProvider;
 import org.krysalis.barcode4j.tools.ECIUtil;
 import org.krysalis.barcode4j.tools.UnitConv;
 
-import com.google.zxing.WriterException;
-import com.google.zxing.qrcode.encoder.ByteMatrix;
-import com.google.zxing.qrcode.encoder.Encoder;
-import com.google.zxing.qrcode.encoder.QRCode;
+import java.awt.*;
 
 /**
  * This class is an implementation of QR Code (ISO 18004:2006(E)).
@@ -167,9 +166,9 @@ public class QRCodeBean extends AbstractBarcodeBean {
     public BarcodeDimension calcDimensions(String msg) {
         QRCode code = new QRCode();
         try {
-            Encoder.encode(msg,
+            code = Encoder.encode(msg,
                     QRLogicImpl.getZXingErrorLevel(errorCorrectionLevel),
-                    QRLogicImpl.createHints(encoding), code);
+                    QRLogicImpl.createHints(encoding));
         } catch (WriterException e) {
             throw new RuntimeException(e.getMessage());
         }
